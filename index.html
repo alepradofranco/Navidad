@@ -3,73 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navidad Elegante</title>
+    <title>Tarjeta Navideña Elegante</title>
 
-    <!-- Tipografías elegantes -->
+    <!-- Tipografías -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
+        /* Fondo general */
         body {
             margin: 0;
+            background: linear-gradient(180deg, #0d0d0d, #1a1a1a, #0d0d0d);
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(#1a1a1a, #000);
             color: #f5f5f5;
-            overflow-x: hidden;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        header {
-            padding: 80px 20px;
-            background-image: url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin: 0;
-            color: #f8e9c6;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-        }
-
-        .subtitulo {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            color: #e6d8b9;
-        }
-
-        .contenido {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
+        /* Contenedor principal */
         .tarjeta {
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 30px;
-            margin: 20px auto;
-            border-radius: 20px;
-            max-width: 650px;
-            backdrop-filter: blur(6px);
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            color: #f8e9c6;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            padding: 50px;
+            border-radius: 25px;
+            max-width: 600px;
             text-align: center;
-            font-size: 0.9rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+            animation: aparecer 1.5s ease-out;
         }
 
-        /* ❄️ Animación de nieve elegante */
+        /* Animación de entrada */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Título elegante */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: #f8e9c6;
+            margin-bottom: 15px;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.4),
+                0 0 20px rgba(255, 215, 0, 0.3),
+                0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Mensaje */
+        p {
+            font-size: 1.3rem;
+            color: #e6d8b9;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Línea decorativa */
+        .linea {
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, gold, transparent);
+            margin: 20px auto;
+        }
+
+        /* Pie de tarjeta */
+        .firma {
+            font-size: 1rem;
+            color: #c9b88a;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        /* Nieve */
         .snowflake {
             position: fixed;
             top: -10px;
@@ -77,6 +91,7 @@
             font-size: 1rem;
             opacity: 0.8;
             animation: caer linear infinite;
+            pointer-events: none;
         }
 
         @keyframes caer {
@@ -90,70 +105,15 @@
 
 <body>
 
-    <header>
-        <h1>Feliz Navidad</h1>
-        <p class="subtitulo">Elegancia, paz y armonía en estas fiestas</p>
-    </header>
+    <div class="tarjeta">
+        <h1 id="titulo"></h1>
+        <div class="linea"></div>
+        <p id="mensaje"></p>
+        <div class="linea"></div>
+        <p class="firma">Con aprecio y buenos deseos ✨</p>
+    </div>
 
-    <section class="contenido">
-        <div class="tarjeta">
-            <h2>Mensaje Navideño</h2>
-            <p>
-                Que esta Navidad esté llena de serenidad, luz y momentos inolvidables junto a quienes más amas.
-            </p>
-        </div>
-
-        <div class="tarjeta">
-            <h2>Cuenta regresiva</h2>
-            <p id="contador"></p>
-        </div>
-    </section>
-
-    <footer>
-        <p>Diseño elegante creado con dedicación ✨</p>
-    </footer>
-
-    <script>
-        // ❄️ Generador de nieve
-        function crearNieve() {
-            const copo = document.createElement("div");
-            copo.classList.add("snowflake");
-            copo.textContent = "❄";
-
-            copo.style.left = Math.random() * 100 + "vw";
-            copo.style.fontSize = (Math.random() * 10 + 10) + "px";
-            copo.style.animationDuration = (Math.random() * 5 + 5) + "s";
-
-            document.body.appendChild(copo);
-
-            setTimeout(() => {
-                copo.remove();
-            }, 10000);
-        }
-
-        setInterval(crearNieve, 200);
-
-        // 🎄 Cuenta regresiva
-        function actualizarContador() {
-            const navidad = new Date("December 25, 2025 00:00:00").getTime();
-            const ahora = new Date().getTime();
-            const diferencia = navidad - ahora;
-
-            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-            document.getElementById("contador").innerHTML =
-                `${dias} días, ${horas} horas, ${minutos} min, ${segundos} seg`;
-
-            if (diferencia < 0) {
-                document.getElementById("contador").innerHTML = "🎉 ¡Feliz Navidad! 🎉";
-            }
-        }
-
-        setInterval(actualizarContador, 1000);
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
